@@ -1,3 +1,3 @@
 import { Password } from './uses/passwordValidation'
 
-Password.validate('abc')
+Password.validate('Abc')
