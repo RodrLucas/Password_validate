@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -82,69 +82,42 @@
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">45x</span>
-<span class="cline-any cline-yes">45x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ResultProps } from "../types/results";
-&nbsp;
-type passProps = string;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { passwordProps } from "../types/password";
 &nbsp;
 export class SequencesValidation {
-  static execute(password: passProps, results: ResultProps) {
-    const passArr = password.toLowerCase().split("");
-    let sequences = 0;
+  static execute(password: passwordProps) {
+    const passwordArr = password.toLowerCase().split("");
 &nbsp;
-    //Ponto de atenção -&gt; Antes some()
-    passArr.forEach((value, index) =&gt; {
-      let currentIndex = value.charCodeAt(0);
-      if (passArr[index + 1] === undefined) return;
+    const result = passwordArr.reduce((acc, value, index) =&gt; {
+      const currentIndex = value.charCodeAt(0);
+      if (passwordArr[index + 1] === undefined) return acc;
+      const nextValueIndex = passwordArr[index + 1].charCodeAt(0);
+      if (currentIndex + 1 === nextValueIndex) acc += 1;
 &nbsp;
-      let nextValueIndex = passArr[index + 1].charCodeAt(0);
-      if (currentIndex + 1 === nextValueIndex) sequences += 1;
-    });
-    
-    if (sequences &gt;= 2) {
-      results.result = false;
-      results.errors.push("Cannot contain more than 3 character sequences");
-    }
+      return acc;
+    }, 0);
 &nbsp;
-    results.result = true;
-&nbsp;
-    return results;
+    if (result &lt; 2) return { error: "" }; //Analisar para não precisar retornar um erro desestruturado
+    else return { error: "Cannot contain more than 3 character sequences" };
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -154,7 +127,7 @@ export class SequencesValidation {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-31T21:17:32.873Z
+                at 2022-09-01T19:06:40.566Z
             </div>
         <script src="../prettify.js"></script>
         <script>

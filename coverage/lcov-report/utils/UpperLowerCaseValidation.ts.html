@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/14</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/14</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -88,54 +88,63 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-yes">48x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ResultProps } from "../types/results";
-type passProps = string;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { passwordProps } from "../types/password";
 &nbsp;
 export class UpperLowerCaseValidation {
-  static execute(password: passProps, results: ResultProps) {
-    const SPECIAL_CHAR = `!@#$%^&amp;*()_+={};':"|,.&lt;&gt;?~`;
+  static execute(password: passwordProps) {
     const passArr = password.split("");
-    let upper = false;
-    let lower = false;
-    
-    passArr.some((value) =&gt; {
-      if (value.toUpperCase() === value &amp;&amp; !SPECIAL_CHAR.includes(value))
-        upper = true;
-      if (value.toLowerCase() === value &amp;&amp; !SPECIAL_CHAR.includes(value))
-        lower = true;
+&nbsp;
+    const isCharacterALetter = passArr.filter((value) =&gt; {
+      const isLetter = value.toLowerCase() != value.toUpperCase();
+      return isLetter;
     });
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!(upper &amp;&amp; lower)) {
-<span class="cstat-no" title="statement not covered" >      results.result = false;</span>
-<span class="cstat-no" title="statement not covered" >      results.errors.push("Must have uppercase and lowercase letters");</span>
+    function isUpperAndLower() {
+      const isUpper = isCharacterALetter.some(
+        (value) =&gt; value.toUpperCase() === value
+      );
+      const isLower = isCharacterALetter.some(
+        (value) =&gt; value.toLowerCase() === value
+      );
+      
+      return isUpper &amp;&amp; isLower;
     }
 &nbsp;
-    return results;
+    if (!isUpperAndLower()) {
+      return {error: "Password must contain Lower and Upper case letters"}
+    }else return {error: ""}
+&nbsp;
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -145,7 +154,7 @@ export class UpperLowerCaseValidation {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-31T21:17:32.873Z
+                at 2022-09-01T19:06:40.566Z
             </div>
         <script src="../prettify.js"></script>
         <script>
