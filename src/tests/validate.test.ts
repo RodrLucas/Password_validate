@@ -110,7 +110,7 @@ describe("Password Validator", () => {
     });
   });
 
-  it("Should recieve an invalid password and return false and a list of errors", () => {
+  it("Should recieve an valid password and return true and a empty list of errors", () => {
     const validPassword = "LucasRodrigues@#!";
 
     expect(Password.validate(validPassword)).toEqual({
