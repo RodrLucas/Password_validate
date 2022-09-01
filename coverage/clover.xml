@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1662059425050" clover="3.2.0">
-  <project timestamp="1662059425051" name="All files">
-    <metrics statements="51" coveredstatements="51" conditionals="16" coveredconditionals="16" methods="13" coveredmethods="13" elements="80" coveredelements="80" complexity="0" loc="51" ncloc="51" packages="2" files="6" classes="6"/>
+<coverage generated="1662065987218" clover="3.2.0">
+  <project timestamp="1662065987218" name="All files">
+    <metrics statements="49" coveredstatements="49" conditionals="16" coveredconditionals="16" methods="13" coveredmethods="13" elements="78" coveredelements="78" complexity="0" loc="49" ncloc="49" packages="2" files="6" classes="6"/>
     <package name="uses">
       <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="passwordValidation.ts" path="/home/gcb/Área de Trabalho/Desafios/passwordValidation/src/uses/passwordValidation.ts">
@@ -18,22 +18,20 @@
       </file>
     </package>
     <package name="utils">
-      <metrics statements="42" coveredstatements="42" conditionals="15" coveredconditionals="15" methods="11" coveredmethods="11"/>
+      <metrics statements="40" coveredstatements="40" conditionals="15" coveredconditionals="15" methods="11" coveredmethods="11"/>
       <file name="UpperLowerCaseValidation.ts" path="/home/gcb/Área de Trabalho/Desafios/passwordValidation/src/utils/UpperLowerCaseValidation.ts">
-        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="8" count="65" type="stmt"/>
-        <line num="9" count="65" type="stmt"/>
+        <line num="7" count="65" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="17" type="stmt"/>
         <line num="13" count="5" type="stmt"/>
         <line num="14" count="17" type="stmt"/>
-        <line num="16" count="5" type="stmt"/>
-        <line num="17" count="17" type="stmt"/>
+        <line num="17" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="20" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="23" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="3" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
       </file>
       <file name="index.ts" path="/home/gcb/Área de Trabalho/Desafios/passwordValidation/src/utils/index.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>

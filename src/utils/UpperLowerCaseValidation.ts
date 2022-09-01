@@ -3,11 +3,7 @@ import type { passwordProps } from "../types/password";
 export class UpperLowerCaseValidation {
   static execute(password: passwordProps) {
     const passArr = password.split("");
-
-    const isCharacterALetter = passArr.filter((value) => {
-      const isLetter = value.toLowerCase() != value.toUpperCase();
-      return isLetter;
-    });
+    const isCharacterALetter = passArr.filter((value) => value.toLowerCase() != value.toUpperCase());
 
     function isUpperAndLower() {
       const isUpper = isCharacterALetter.some(
@@ -23,6 +19,5 @@ export class UpperLowerCaseValidation {
     if (!isUpperAndLower()) {
       return {error: "Password must contain Lower and Upper case letters"}
     }else return {error: ""}
-
   }
 }

@@ -10,17 +10,17 @@ describe("Individual Password Validate", () => {
     });
 
     it("Should return false and an list with the validation error: Password must contain 16-32 characters", () => {
-      const menorQueDezeseis = "I8d12!upIG";
+      const invalidPassword = "I8d12!upIG";
 
-      expect(LenghtValidation.execute(menorQueDezeseis)).toEqual({
+      expect(LenghtValidation.execute(invalidPassword)).toEqual({
         error: "Password must contain 16-32 characters",
       });
     });
 
     it("Should return false and an list with the validation error: Password must contain 16-32 characters", () => {
-      const maiorQueTrintaEDois = "I8d12!upIGVFRTEYDHSGBFhrkdurnhgpl";
+      const invalidPassword = "I8d12!upIGVFRTEYDHSGBFhrkdurnhgpl";
 
-      expect(LenghtValidation.execute(maiorQueTrintaEDois)).toEqual({
+      expect(LenghtValidation.execute(invalidPassword)).toEqual({
         error: "Password must contain 16-32 characters",
       });
     });

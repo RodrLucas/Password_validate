@@ -7,8 +7,9 @@ export class SequencesValidation {
     const result = passwordArr.reduce((acc, value, index) => {
       const currentIndex = value.charCodeAt(0);
       if (passwordArr[index + 1] === undefined) return acc;
+
       const nextValueIndex = passwordArr[index + 1].charCodeAt(0);
-      if (currentIndex + 1 === nextValueIndex) acc += 1;
+      if (currentIndex + 1 === nextValueIndex && currentIndex + 2 === nextValueIndex + 1) acc += 1;
 
       return acc;
     }, 0);
