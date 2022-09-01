@@ -1,25 +1,28 @@
-import { ResultProps } from "../types/results";
-type passProps = string;
+import type { passwordProps } from "../types/password";
 
 export class UpperLowerCaseValidation {
-  static execute(password: passProps, results: ResultProps) {
-    const SPECIAL_CHAR = `!@#$%^&*()_+={};':"|,.<>?~`;
+  static execute(password: passwordProps) {
     const passArr = password.split("");
-    let upper = false;
-    let lower = false;
-    
-    passArr.some((value) => {
-      if (value.toUpperCase() === value && !SPECIAL_CHAR.includes(value))
-        upper = true;
-      if (value.toLowerCase() === value && !SPECIAL_CHAR.includes(value))
-        lower = true;
+
+    const isCharacterALetter = passArr.filter((value) => {
+      const isLetter = value.toLowerCase() != value.toUpperCase();
+      return isLetter;
     });
 
-    if (!(upper && lower)) {
-      results.result = false;
-      results.errors.push("Must have uppercase and lowercase letters");
+    function isUpperAndLower() {
+      const isUpper = isCharacterALetter.some(
+        (value) => value.toUpperCase() === value
+      );
+      const isLower = isCharacterALetter.some(
+        (value) => value.toLowerCase() === value
+      );
+      
+      return isUpper && isLower;
     }
 
-    return results;
+    if (!isUpperAndLower()) {
+      return {error: "Password must contain Lower and Upper case letters"}
+    }else return {error: ""}
+
   }
 }

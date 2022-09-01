@@ -1,21 +1,30 @@
 import type { ResultProps } from "../types/results";
-import { LenghtValidation } from "../utils/lengthValidation";
-import { SequencesValidation } from "../utils/sequencesValidation";
-import { SpecialCharValidation } from "../utils/specialCharValidation";
-import { UpperLowerCaseValidation } from "../utils/UpperLowerCaseValidation";
+import {
+  LenghtValidation,
+  SequencesValidation,
+  SpecialCharValidation,
+  UpperLowerCaseValidation,
+} from "../utils";
 
 export class Password {
   static validate(password: string) {
-    let results: ResultProps = {
-      result: true,
-      errors: [],
-    };
+    const validations = [
+      LenghtValidation.execute(password),
+      SequencesValidation.execute(password),
+      SpecialCharValidation.execute(password),
+      UpperLowerCaseValidation.execute(password),
+    ];
 
-    LenghtValidation.execute(password, results);
-    SequencesValidation.execute(password, results);
-    SpecialCharValidation.execute(password, results);
-    UpperLowerCaseValidation.execute(password, results);
+    const results = validations.reduce(
+      (acc: ResultProps, { error }) => {
+        if (error){
+          acc.errors.push(error)
+          acc.result = false
+        } return acc;
+      },
+      { result: true, errors: [] }
+    );
 
-    return console.log(results);
+    return results;
   }
 }

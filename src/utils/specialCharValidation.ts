@@ -1,21 +1,16 @@
-import type { ResultProps } from "../types/results";
-type passProps = string;
+import type { passwordProps } from "../types/password";
 
 export class SpecialCharValidation {
-  static execute(password: passProps, results: ResultProps) {
+  static execute(password: passwordProps) {
     const SPECIAL_CHAR = `!@#$%^&*()_+={};':"|,.<>?~`;
-    let passArr: string[] = password.split("");
-    let NumberSpecialChar = 0;
+    const passArr: string[] = password.split("");
 
-    passArr.some((password) => {
-      if (SPECIAL_CHAR.includes(password)) NumberSpecialChar++;
-    });
+    const numberOfSpecialChar = passArr.reduce((acc, value) => {
+      if(SPECIAL_CHAR.includes(value)) acc++
+      return acc;
+    }, 0);
 
-    if (NumberSpecialChar < 2) {
-      results.result = false;
-      results.errors.push("Must contain minimum of 2 special characters");
-    }
-
-    return results;
+    if (!(numberOfSpecialChar < 2)) return {error: ""}
+    else return {error: "Must contain minimum of 2 special characters"}
   }
 }

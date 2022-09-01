@@ -11,27 +11,27 @@ describe("Individual Password Validate", () => {
     it("Should return true and an empty list of errors", () => {
       const validPassword = "I8d12!upIGOSACGT";
 
-      expect(LenghtValidation.execute(validPassword, results)).toBe({
-        results: true,
+      expect(LenghtValidation.execute(validPassword, results)).toEqual({
+        result: true,
         errors: [],
       });
     });
 
     it("Should return false and an list with the validation error: Password must contain 16-32 characters", () => {
-      const invalidPassword = "I8d12!upIG";
+      const menorQueDezeseis = "I8d12!upIG";
 
-      expect(LenghtValidation.execute(invalidPassword, results)).toEqual({
-        results: false,
+      expect(LenghtValidation.execute(menorQueDezeseis, results)).toEqual({
+        result: false,
         errors: ["Password must contain 16-32 characters"],
       });
+    });
 
-      it("Should return false and an list with the validation error: Password must contain 16-32 characters", () => {
-        const invalidPassword = "I8d12!upIGVFRTEYDHSGBFhrkdurnhgpl";
+    it("Should return false and an list with the validation error: Password must contain 16-32 characters", () => {
+      const maiorQueTrintaEDois = "I8d12!upIGVFRTEYDHSGBFhrkdurnhgpl";
 
-        expect(LenghtValidation.execute(invalidPassword, results)).toEqual({
-          results: false,
-          errors: ["Password must contain 16-32 characters"],
-        });
+      expect(LenghtValidation.execute(maiorQueTrintaEDois, results)).toEqual({
+        result: false,
+        errors: ["Password must contain 16-32 characters"],
       });
     });
   });
@@ -41,7 +41,7 @@ describe("Individual Password Validate", () => {
       const validPassword = "I8d12!upIGaCVde";
 
       expect(SequencesValidation.execute(validPassword, results)).toBe({
-        results: true,
+        result: true,
         errors: [],
       });
     });
@@ -50,7 +50,7 @@ describe("Individual Password Validate", () => {
       const invalidPassword = "I8d12!upIGaBc";
 
       expect(SequencesValidation.execute(invalidPassword, results)).toBe({
-        results: false,
+        result: false,
         errors: ["Cannot contain more than 3 character sequences"],
       });
     });
@@ -59,7 +59,7 @@ describe("Individual Password Validate", () => {
       const invalidPassword = "I8d12!upIGa456";
 
       expect(SequencesValidation.execute(invalidPassword, results)).toBe({
-        results: false,
+        result: false,
         errors: ["Cannot contain more than 3 character sequences"],
       });
     });
@@ -70,7 +70,7 @@ describe("Individual Password Validate", () => {
       const validPassword = "I8d12!upI@aCVde";
 
       expect(SpecialCharValidation.execute(validPassword, results)).toEqual({
-        results: true,
+        result: true,
         errors: [],
       });
     });
@@ -79,7 +79,7 @@ describe("Individual Password Validate", () => {
       const validPassword = "I8d12!upIAaCVde";
 
       expect(SpecialCharValidation.execute(validPassword, results)).toEqual({
-        results: false,
+        result: false,
         errors: ["Must contain minimum of 2 special characters"],
       });
     });
@@ -90,7 +90,7 @@ describe("Individual Password Validate", () => {
       const validPassword = "I8d12!upIAaCVde";
 
       expect(SpecialCharValidation.execute(validPassword, results)).toEqual({
-        results: true,
+        result: true,
         errors: [],
       });
     });
@@ -99,7 +99,7 @@ describe("Individual Password Validate", () => {
       const invalidPassword = "i8d12!upiaacvde";
 
       expect(SpecialCharValidation.execute(invalidPassword, results)).toBe({
-        results: false,
+        result: false,
         errors: ["Must have uppercase and lowercase letters"],
       });
     });
@@ -108,7 +108,7 @@ describe("Individual Password Validate", () => {
       const invalidPassword = "I8D12!UPIAACVDE";
 
       expect(SpecialCharValidation.execute(invalidPassword, results)).toBe({
-        results: false,
+        result: false,
         errors: ["Must have uppercase and lowercase letters"],
       });
     });
@@ -120,7 +120,7 @@ describe("Password Validator", () => {
     const invalidPassword = "123";
 
     expect(Password.validate(invalidPassword)).toBe({
-      results: false,
+      result: false,
       errors: [
         "Password must contain 16-32 characters",
         "Cannot contain more than 3 character sequences",

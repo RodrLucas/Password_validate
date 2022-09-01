@@ -1,27 +1,19 @@
-import { ResultProps } from "../types/results";
-
-type passProps = string;
+import type { passwordProps } from "../types/password";
 
 export class SequencesValidation {
-  static execute(password: passProps, results: ResultProps) {
-    let passArr = password.toLowerCase().split("");
-    let sequences = 0;
+  static execute(password: passwordProps) {
+    const passwordArr = password.toLowerCase().split("");
 
-    passArr.some((value, index) => {
-      let currentIndex = value.charCodeAt(0);
-      if (passArr[index + 1] === undefined) return;
+    const result = passwordArr.reduce((acc, value, index) => {
+      const currentIndex = value.charCodeAt(0);
+      if (passwordArr[index + 1] === undefined) return acc;
+      const nextValueIndex = passwordArr[index + 1].charCodeAt(0);
+      if (currentIndex + 1 === nextValueIndex) acc += 1;
 
-      let nextValueIndex = passArr[index + 1].charCodeAt(0);
-      if (currentIndex + 1 === nextValueIndex) sequences += 1;
-    });
-    
-    if (sequences >= 2) {
-      results.result = false;
-      results.errors.push("Cannot contain more than 3 character sequences");
-    }
+      return acc;
+    }, 0);
 
-    results.result = true;
-
-    return results;
+    if (result < 2) return { error: "" }; //Analisar para não precisar retornar um erro desestruturado
+    else return { error: "Cannot contain more than 3 character sequences" };
   }
 }
